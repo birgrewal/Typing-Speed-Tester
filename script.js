@@ -27,6 +27,7 @@ const timeTag = document.querySelector(".time span b")
 const mistakeTag = document.querySelector(".mistake span")
 const wpmTag = document.querySelector(".wpm span")
 const cpmTag = document.querySelector(".cpm span")
+const wpmScore = document.querySelector("#wpmScore span b")
 
 let timer;
 let maxTime = 60;
@@ -41,6 +42,11 @@ function loadParagraph() {
         let span = `<span>${char}</span>`
         typingText.innerHTML += span;
     });
+    cWpm = localStorage.getItem('wpm');
+    cCpm = localStorage.getItem('cpm');
+
+    setScore(cWpm, cCpm)
+
     typingText.querySelectorAll("span")[0].classList.add("active");
     document.addEventListener("keydown", () => inpField.focus());
     typingText.addEventListener("click", () => inpField.focus());
@@ -79,7 +85,8 @@ function initTyping() {
 
         wpmTag.innerText = wpm;
         mistakeTag.innerText = mistakes;
-        cpmTag.innerText = charIndex - mistakes;
+        cpm = charIndex - mistakes
+        cpmTag.innerText = cpm;
     } else {
         clearInterval(timer);
         inpField.value = "";
@@ -92,6 +99,8 @@ function initTimer() {
         timeTag.innerText = timeLeft;
         let wpm = Math.round(((charIndex - mistakes) / 5) / (maxTime - timeLeft) * 60);
         wpmTag.innerText = wpm;
+
+        scoreChecker(wpm);
     } else {
         clearInterval(timer);
     }
@@ -107,6 +116,21 @@ function resetGame() {
     wpmTag.innerText = 0;
     mistakeTag.innerText = 0;
     cpmTag.innerText = 0;
+}
+
+function scoreChecker(wpm) {
+    highWpm = localStorage.getItem('wpm');
+
+    if (wpm > highWpm || highWpm == null) {
+        highWpm = wpm
+    }
+
+    setScore(highWpm)
+}
+
+function setScore(wpm) {
+    localStorage.setItem('wpm', wpm)
+    wpmScore.innerText = wpm
 }
 
 loadParagraph();

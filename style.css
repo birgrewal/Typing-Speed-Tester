@@ -43,6 +43,15 @@ body {
     position: absolute;
 }
 
+.container .highScore {
+    margin-bottom: 5px;
+    display: flex;
+    padding-bottom: 10px;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+}
+
 .container .content-box {
     padding: 13px 20px 0;
     border-radius: 10px;
@@ -134,12 +143,17 @@ body {
     color: #1e1e1e;
 }
 
-.content .result-details {
+.result-details {
     display: flex;
     flex-wrap: wrap;
     align-items: center;
     width: calc(100% - 140px);
     justify-content: space-between;
+}
+
+.highScore .result-details {
+    justify-content: start;
+
 }
 
 .result-details li {
@@ -153,6 +167,10 @@ body {
 .result-details li:not(:first-child) {
     padding-left: 22px;
     border-left: 2px solid #bfbfbf;
+}
+
+.highScore .result-details li:first-child {
+    padding: 0 22px;
 }
 
 .result-details li p {
