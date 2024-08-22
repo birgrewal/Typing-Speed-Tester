@@ -1,4 +1,5 @@
 #Typing Speed Tester Game
+
 This Typing Speed Tester Game is a web-based application built using HTML, CSS, and Vanilla JavaScript. The game is designed to help users measure and improve their typing speed in an interactive and fun way. Here's a breakdown of the key features and functionality:
 
 ##Features
